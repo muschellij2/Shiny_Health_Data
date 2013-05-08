@@ -75,11 +75,28 @@ shinyServer(function(input, output) {
   
   
   output$Controls <- renderUI({
+#     df <- dataset()
+#     ra <- range(df$Average.Total.Payments, na.rm=TRUE)
+#     if (all(is.na(ra)) | all(is.infinite(ra))) ra <- c(0, 1)
+#     print(ra)
     list(
       selectInput("state", "Select State", c("USA", allstates), selected="USA"),
       selectInput("proc", "Please Select Procedure Category", proc, selected=proc[1])
     )
-  })  
+  })
+  
+  output$Ranges <- renderUI({
+    df <- dataset()
+    ra <- range(df$Average.Total.Payments, na.rm=TRUE)
+    if (all(is.na(ra)) | all(is.infinite(ra))) ra <- c(0, 1)
+    print(ra)
+    list(
+      numericInput("minrange", "Minimum Average Payments ($)", ra[1], min = ra[1], max = ra[2],
+                   step = 1000),
+      numericInput("maxrange", "Maximum Average Payments ($)", ra[2], min = ra[1], max = ra[2],
+                   step = 1000)
+    )
+  })
   
   
   
@@ -96,10 +113,12 @@ shinyServer(function(input, output) {
     reg <- "US"
     if (!is.null(state)){
       if (state != "USA") {
-        df <- df[ df$Provider.State == state, ]
+        df <- df[ df$Provider.State == input$state, ]
         reg <- paste0("US-", state)
       }
     }
+    df <- df[ df$Average.Total.Payments >= input$minrange & df$Average.Total.Payments <= input$maxrange, ]
+      print(input$minrange)
     #     reg <- ifelse(!is.na(state), state, "US")
     #     gvisGeoMap(df,
     #                  locationvar="locationvar", numvar="Average.Total.Payments",

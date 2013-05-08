@@ -4,7 +4,8 @@ shinyUI(pageWithSidebar(
   headerPanel("Cost of most common medical procedures at US Hospitals based on CMS data"),
   sidebarPanel(
     h3("Select state/procedure"), 
-    uiOutput("Controls")    
+    uiOutput("Controls"),
+    uiOutput("Ranges")
     #     textInput("address", label="Address", value="615 N Wolfe St, Baltimore, MD"), 
     #     sliderInput("Year", "Election year to be displayed:", 
     #                 min=1932, max=2012, value=2012,  step=4,
