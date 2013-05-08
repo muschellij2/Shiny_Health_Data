@@ -45,7 +45,7 @@ gGeoState <- function(address,verbose=FALSE) {
 
 load("Medicare_Data.Rda")
 
-proc <- unique(data$DRG.Definition)
+proc <- sort(unique(data$DRG.Definition))
 
 data$locationvar <- paste0(data$lat, ":", data$long)
 df <- data
