@@ -19,7 +19,8 @@ shinyUI(pageWithSidebar(
         from the Centers for Medicare and Medicaid Services. This plot is brought to you by 
          <a href='http://biostat.jhsph.edu/~jmuschel/'>John Muschelli</a> and
          <a href='http://simplystatistics.org'>Simply Statistics</a>. Follow us on Twitter!
-         <a href='https://twitter.com/StrictlyStat'>@StrictlyStat</a> and <a href='https://twitter.com/simplystats'>@simplystats</a>")
+         <a href='https://twitter.com/StrictlyStat'>@StrictlyStat</a> and <a href='https://twitter.com/simplystats'>@simplystats</a>.
+         Code is located <a href='https://github.com/muschellij2/Shiny_Health_Data'>here</a>.")
   )
   
 )
