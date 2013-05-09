@@ -117,6 +117,9 @@ shinyServer(function(input, output) {
         reg <- paste0("US-", state)
       }
     }
+#     print(head(df$Provider.State))
+#     print(head(df$Average.Total.Payments))
+    df <- df[order(df$Provider.State, -df$Average.Total.Payments), ]
     df <- df[ df$Average.Total.Payments >= input$minrange & df$Average.Total.Payments <= input$maxrange, ]
       print(input$minrange)
     #     reg <- ifelse(!is.na(state), state, "US")
